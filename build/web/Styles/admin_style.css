@@ -1,0 +1,345 @@
+/* --- Estilos Globales --- */
+:root {
+    --sidebar-bg: linear-gradient(180deg, #162232, #243447); /* Azul oscuro profundo a más claro */
+    --sidebar-text-color: #adb5bd; /* Gris claro para texto normal */
+    --sidebar-text-hover-color: #ffffff;
+    --sidebar-active-bg: #3498db; /* Azul brillante para activo/hover */
+    --sidebar-active-indicator: #ffffff; /* Color del indicador (borde o fondo) activo */
+    --sidebar-header-color: #ffffff;
+    --sidebar-icon-color: #86909c;
+    --sidebar-icon-hover-color: #ffffff;
+
+    --main-bg: #f0f2f5; /* Fondo principal muy claro, tipo Ant Design */
+    --text-color-dark: #1d2129;
+    --text-color-light: #4e5969;
+    --card-bg: #ffffff;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --border-color: #e5e6eb;
+
+    --font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--main-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevenir scroll horizontal */
+}
+
+.admin-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.admin-sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed; /* Sidebar fijo */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    box-shadow: 3px 0px 15px rgba(0,0,0,0.1);
+    transition: width 0.3s ease;
+}
+
+.sidebar-brand {
+    padding: 20px 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.sidebar-brand a {
+    color: var(--sidebar-header-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.sidebar-brand i {
+    margin-right: 10px;
+    color: var(--sidebar-active-bg);
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto; /* Scroll si el menú es muy largo */
+}
+
+.menu-header {
+    padding: 25px 25px 10px 25px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d; /* Un gris un poco más oscuro para los headers */
+}
+
+.menu-item > a {
+    display: block;
+    padding: 14px 25px;
+    text-decoration: none;
+    color: var(--sidebar-text-color);
+    transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.menu-item > a span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-item > a .icon {
+    font-size: 1.1em;
+    margin-right: 15px;
+    width: 20px; /* Para alineación */
+    text-align: center;
+    color: var(--sidebar-icon-color);
+    transition: color 0.2s ease;
+}
+
+.menu-item > a .arrow {
+    font-size: 0.8em;
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.menu-item:hover > a,
+.menu-item > a:focus { /* Añadido focus para accesibilidad */
+    background-color: rgba(255,255,255,0.05);
+    color: var(--sidebar-text-hover-color);
+    padding-left: 30px;
+}
+
+.menu-item:hover > a .icon,
+.menu-item > a:focus .icon {
+    color: var(--sidebar-icon-hover-color);
+}
+
+.menu-item.active > a {
+    background-color: var(--sidebar-active-bg); /* Fondo azul brillante */
+    color: var(--sidebar-text-hover-color);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--sidebar-active-indicator); /* Indicador izquierdo */
+    padding-left: 25px; /* Reset padding on active */
+}
+.menu-item.active > a .icon {
+    color: var(--sidebar-icon-hover-color);
+}
+
+.menu-item.active > a .arrow {
+    transform: rotate(90deg);
+}
+
+/* Submenu */
+.menu-item > a > .submenu { /* ul dentro de a */
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0; /* Espacio superior */
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+                opacity 0.3s ease-in-out,
+                transform 0.3s ease-in-out,
+                padding-top 0.35s cubic-bezier(0.25, 0.1, 0.25, 1),
+                padding-bottom 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.menu-item.active > a > .submenu {
+    opacity: 1;
+    max-height: 500px; /* Ajustar si es necesario */
+    transform: translateY(0);
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px 20px 10px 30px; /* Alineación con el ícono padre + extra */
+    text-decoration: none;
+    color: var(--sidebar-text-color);
+    font-size: 0.85rem;
+    font-weight: 400;
+    transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+.submenu li a .sub-icon {
+    margin-right: 10px;
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+.submenu li a:hover,
+.submenu li a:focus {
+    background-color: rgba(255,255,255,0.08);
+    color: var(--sidebar-text-hover-color);
+    padding-left: 35px;
+}
+
+.sidebar-footer {
+    padding: 20px 25px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6c757d;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: auto; /* Empuja al fondo */
+}
+
+
+/* --- Main Content Area --- */
+.admin-main-content {
+    flex-grow: 1;
+    margin-left: 260px; /* Mismo ancho que el sidebar */
+    padding: 0;
+    transition: margin-left 0.3s ease;
+}
+
+.admin-header {
+    background-color: var(--card-bg);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    position: sticky; /* Header fijo */
+    top:0;
+    z-index: 999;
+}
+
+.header-title h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+    color: var(--text-color-dark);
+}
+.header-title h1 i {
+    margin-right: 10px;
+    color: var(--sidebar-active-bg);
+}
+.header-title p {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    margin: 0;
+}
+.header-actions .btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+}
+.header-actions .btn i {
+    margin-right: 5px;
+}
+
+
+.content-wrapper {
+    padding: 30px;
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.stat-card-icon {
+    font-size: 2.5rem;
+    margin-right: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+}
+.stat-card-icon i {
+    color: #fff;
+}
+
+.stat-card.card-1 .stat-card-icon { background-color: #3498db; } /* Azul */
+.stat-card.card-2 .stat-card-icon { background-color: #2ecc71; } /* Verde */
+.stat-card.card-3 .stat-card-icon { background-color: #e67e22; } /* Naranja */
+.stat-card.card-4 .stat-card-icon { background-color: #9b59b6; } /* Morado */
+
+.stat-card-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+}
+.stat-card-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+}
+
+.main-panel-content .card {
+    border: none;
+    box-shadow: var(--card-shadow);
+    border-radius: 8px;
+}
+.main-panel-content .card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.main-panel-content .card-body {
+    padding: 1.5rem;
+}
+
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .admin-sidebar {
+        /* Podríamos hacerlo colapsable aquí o cambiar a un menú off-canvas */
+        width: 220px;
+    }
+    .admin-main-content {
+        margin-left: 220px;
+    }
+    .stat-card-info h4 { font-size: 1.5rem; }
+    .stat-card-icon { font-size: 2rem; width: 50px; height: 50px; padding: 10px; }
+}
+
+@media (max-width: 768px) {
+    .admin-sidebar {
+        position: fixed;
+        left: -260px; /* Oculto por defecto */
+        transition: left 0.3s ease;
+        z-index: 1001; /* Por encima del header del main content */
+    }
+    .admin-sidebar.open { /* Clase para JS para mostrarlo */
+        left: 0;
+    }
+    .admin-main-content {
+        margin-left: 0;
+    }

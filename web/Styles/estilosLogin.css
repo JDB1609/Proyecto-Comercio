@@ -1,0 +1,299 @@
+/* General Body and Layout */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden; 
+}
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    overflow: hidden; 
+}
+
+/* Left Panel: Promotional/Visual Section */
+.login-left-panel {
+    background-image: url('../Assets/fondo_login_promo.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    box-shadow: inset -5px 0 15px rgba(0, 0, 0, 0.2); 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.login-left-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+.login-left-panel > * {
+    position: relative;
+    z-index: 1;
+}
+
+.promo-icon {
+    max-width: 100px;
+    height: auto;
+}
+
+.promo-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.promo-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+.promo-offer {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Right Panel: Login Form Section */
+.login-right-panel {
+    background-color: #fff;
+    padding: 3rem; /* Padding general del panel */
+    flex-grow: 1;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el wrapper del formulario verticalmente */
+    align-items: center; /* Centra el wrapper del formulario horizontalmente */
+    overflow-y: auto; /* Permite scroll vertical solo si el contenido se desborda */
+    overflow-x: hidden; 
+}
+
+.login-form-wrapper {
+    max-width: 450px;
+    width: 100%;
+    padding: 1.2rem; /* Reducir aún más el padding interno del wrapper */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /* --- CAMBIO CRÍTICO AQUÍ: Alinea el contenido desde el inicio (arriba) --- */
+    justify-content: flex-start; /* Asegura que el logo y título estén arriba */
+    /* Elimina min-height para que se ajuste al contenido, o úsalo con precaución */
+    min-height: 0; /* Asegura que no tenga una altura mínima que fuerce el desbordamiento */
+}
+
+.login-logo {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 1rem; /* Reducir margen inferior */
+    margin-top: 1rem; /* Asegurar un pequeño margen superior si el wrapper lo necesita */
+}
+
+.login-main-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.8rem; /* Reducir margen inferior */
+}
+
+/* Form Elements */
+.form-label {
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.3rem; /* Reducir margen entre label y input */
+    display: block; 
+    text-align: center;
+}
+
+.form-control-lg, .form-select-lg {
+    border-radius: 10px;
+    padding: 0.9rem 1rem; /* Ligeramente más pequeño el padding */
+    border: 1px solid #e0e0e0;
+    font-size: 1rem; /* Ligeramente más pequeño el texto */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 1.2rem; /* Margen inferior para separar los campos */
+}
+
+.form-control-lg:focus, .form-select-lg:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Buttons */
+.btn-login {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1.1rem; /* Ligeramente más pequeño */
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.9rem; /* Ligeramente más pequeño */
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 1rem; /* Reducir margen superior */
+    margin-bottom: 1rem; /* Espacio después del botón de login */
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.forgot-password-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.85rem; /* Más pequeña */
+    transition: color 0.2s ease;
+    margin-bottom: 1.2rem; /* Espacio después del enlace */
+    display: block;
+    text-align: center;
+}
+
+.forgot-password-link:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Separator */
+.divider {
+    border-bottom: 1px solid #eee;
+    margin-top: 1rem; /* Margen superior si necesitas más separación */
+    margin-bottom: 1.2rem;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Register Button */
+.btn-register {
+    border-color: #ccc;
+    color: #666;
+    font-size: 1rem; /* Ligeramente más pequeño */
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.8rem; /* Ligeramente más pequeño */
+    transition: all 0.2s ease;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 0.8rem; /* Espacio superior */
+}
+
+.btn-register:hover {
+    background-color: #f0f0f0;
+    border-color: #999;
+    color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left-panel {
+        height: 180px; /* Reducir aún más la altura del panel izquierdo en móvil */
+        padding: 1rem;
+        box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .promo-title {
+        font-size: 1.6rem; /* Reducir tamaño de fuente en móvil */
+    }
+
+    .promo-text {
+        font-size: 0.8rem; /* Reducir tamaño de fuente en móvil */
+    }
+    
+    .login-right-panel {
+        padding: 1rem; /* Reducir padding en móvil */
+        height: auto;
+        overflow-y: auto; 
+    }
+
+    .login-form-wrapper {
+        padding: 0.5rem; /* Reducir padding del wrapper en móvil */
+        min-height: auto;
+    }
+
+    .login-logo {
+        max-width: 80px; /* Reducir el tamaño del logo en móvil */
+        margin-bottom: 1rem;
+    }
+
+    .login-main-title {
+        font-size: 1.4rem; /* Reducir título en móvil */
+        margin-bottom: 1.2rem;
+    }
+
+    /* En móvil, los campos y botones vuelven a ocupar el 100% */
+    .login-form-wrapper .form-control-lg,
+    .login-form-wrapper .form-select-lg,
+    .btn-login,
+    .divider,
+    .btn-register {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .form-label {
+        text-align: left;
+    }
+    
+    .promo-offer {
+        padding: 0.6rem 0.8rem; /* Reducir padding de la oferta en móvil */
+        font-size: 0.9rem;
+    }
+
+    .form-control-lg, .form-select-lg {
+        padding: 0.8rem 1rem; /* Ajuste más pequeño para campos en móvil */
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-login, .btn-register {
+        padding: 0.8rem; /* Ajuste más pequeño para botones en móvil */
+        font-size: 1rem;
+    }
+
+    .forgot-password-link {
+        font-size: 0.8rem;
+    }
+
+    .divider {
+        margin-top: 0.8rem;
+        margin-bottom: 1rem;
+    }
+}

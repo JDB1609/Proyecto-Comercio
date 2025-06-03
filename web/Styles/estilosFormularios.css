@@ -1,0 +1,88 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* ----------- Estilos generales ----------- */
+body {
+    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ----------- Contenedor centrado ----------- */
+.centered-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----------- Tarjetas o cajas ------------ */
+.card-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* ----------- Títulos ----------- */
+.card-box h2, .card-box h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+a.btn {
+    display: inline-block; /* Para asegurar que se comporte como un botón */
+    text-align: center;    /* Alineación del texto */
+    padding: 0.5rem 1rem;  /* Relleno como el de un botón */
+    border-radius: 0.25rem; /* Bordes redondeados */
+    text-decoration: none; /* Eliminar subrayado */
+}
+
+
+/* ----------- Inputs ----------- */
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* ----------- Botones ----------- */
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* ----------- Secciones específicas ----------- */
+.section-title {
+    font-size: 18px;
+    margin-top: 25px;
+    color: #444;
+}
+
+/* ----------- Responsive ----------- */
+@media (max-width: 768px) {
+    .card-box {
+        padding: 20px;
+    }
+}
